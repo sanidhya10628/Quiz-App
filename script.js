@@ -50,30 +50,7 @@ const ques = document.getElementById('question');
 const btn1 = document.getElementsByClassName('btn-1');
 
 // to display the questions and the final score
-document.getElementById('next').addEventListener('click',function(){
-    const question = document.getElementById('question');
-    if(curr>=data.length)
-    {
-        document.getElementsByTagName('section')[0].style.display = "none";
-        document.getElementById('result').innerHTML = score;
-    }
-    else{
-        question.innerHTML = data[curr].question + "<br>";
-
-        const opt1 = document.getElementById('option1');
-        opt1.innerHTML = data[curr].option1;
-
-        const opt2 = document.getElementById('option2');
-        opt2.innerHTML = data[curr].option2;
-
-        const opt3 = document.getElementById('option3');
-        opt3.innerHTML = data[curr].option3;
-
-        const opt4 = document.getElementById('option4');
-        opt4.innerHTML = data[curr].option4;
-
-    }
-})
+document.getElementById('next').addEventListener('click',myfunc)
 
 // to get the user input
 for(let i=0;i<arr.length;i++)
@@ -103,13 +80,17 @@ for(let i=0;i<arr.length;i++)
     arr[i].style.display = "none";
 }
 // to hide the option buttons
-document.getElementById('next').addEventListener('click',function(){
+document.getElementsByClassName('start-btn')[0].addEventListener('click',function(){
+    if(curr===0)
+    {
+        myfunc();
+    }
     for(let i=0;i<arr.length;i++)
     {
         arr[i].style.display = "block";
     }
-
     ques.style.display = "block";
+    document.getElementById('start').style.display = "none";
 })
 
 for(let i=0;i<btn1.length;i++)
@@ -122,4 +103,39 @@ document.getElementsByClassName('start-btn')[0].addEventListener('click',functio
     {
         btn1[i].style.display = "block";
     }
+    // for(let i=0;i<arr.length;i++)
+    // {
+    //     arr[i].style.display = "block";
+    // }
+
+    //ques.style.display = "block";
 })
+
+
+
+function myfunc()
+{
+    const question = document.getElementById('question');
+    if(curr>=data.length)
+    {
+        document.getElementsByTagName('section')[0].style.display = "none";
+        document.getElementById('result').innerHTML = "<h1>Your Score is </h1>" + "<h1> " +score +"</h1>";
+    }
+    else{
+        question.innerHTML = data[curr].question + "<br>";
+
+        const opt1 = document.getElementById('option1');
+        opt1.innerHTML = data[curr].option1;
+
+        const opt2 = document.getElementById('option2');
+        opt2.innerHTML = data[curr].option2;
+
+        const opt3 = document.getElementById('option3');
+        opt3.innerHTML = data[curr].option3;
+
+        const opt4 = document.getElementById('option4');
+        opt4.innerHTML = data[curr].option4;
+
+    }
+}
+
