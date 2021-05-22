@@ -47,10 +47,10 @@ let curr = 0;
 let score = 0;
 const arr = document.getElementsByClassName('opt');
 const ques = document.getElementById('question');
-
+const btn1 = document.getElementsByClassName('btn-1');
 
 // to display the questions and the final score
-document.getElementById('start-btn').addEventListener('click',function(){
+document.getElementById('next').addEventListener('click',function(){
     const question = document.getElementById('question');
     if(curr>=data.length)
     {
@@ -99,13 +99,27 @@ for(let i=0;i<arr.length;i++)
 // to hide the question at the start.
 document.getElementById('question').style.display = "none";
 for(let i=0;i<arr.length;i++)
-  {
+{
     arr[i].style.display = "none";
-  }
-  document.getElementById('start-btn').addEventListener('click',function(){
-      for(let i=0;i<arr.length;i++)
-  {
-    arr[i].style.display = "block";
-  }
-  ques.style.display = "block";
-  })
+}
+// to hide the option buttons
+document.getElementById('next').addEventListener('click',function(){
+    for(let i=0;i<arr.length;i++)
+    {
+        arr[i].style.display = "block";
+    }
+
+    ques.style.display = "block";
+})
+
+for(let i=0;i<btn1.length;i++)
+{
+    btn1[i].style.display = "none";
+}
+
+document.getElementsByClassName('start-btn')[0].addEventListener('click',function(){
+    for(let i=0;i<btn1.length;i++)
+    {
+        btn1[i].style.display = "block";
+    }
+})
