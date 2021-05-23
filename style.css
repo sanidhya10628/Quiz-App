@@ -11,6 +11,7 @@ header{
     font-size: 60px;
     text-align: center;
     margin-top: 20px;
+    color: #9ef01a;
 }
 /*From here start button classes and id start*/
 .start-btn1{
@@ -21,7 +22,7 @@ header{
     height: 200px;
 }
 .start-btn{
-    background-color: yellow;
+    /*background-color: yellow;*/
     margin: 60px auto;
     border: none;
     border-radius: 5px;
@@ -32,39 +33,60 @@ header{
 }
 /*here ends the start button properties.*/
 
-article{
-    width: 50%;
-    text-align: center;
-    margin: 100px auto;
+.article{
+   /*background-color: lightgreen;*/
+   /*padding: 100px 200px;*/
+   margin: 60px auto;
+   margin-bottom: 10px;
+   width: 80%;
+   /*border-radius: 5px;
+   border: 10px solid white;*/
+   /*height: 380px;*/
+   /*height: 50%;*/
 }
+
 #question{
-    background-color: lightblue;
+    /*background-color: lightblue;*/
     color: black;
     font-size: 32px;
+    padding: 20px 30px;
+    margin: 20px 0px;
+    color: white;
+    color: #ade8f4;
+    color: #5adbff;
 }
+
+
 .opt{
+    
     border: none;
     border-radius: 5px;
-    padding: 10px;
-    margin: 5px;
+    padding: 20px;
+    margin: 10px 25px;
     background-color: orange;
     cursor: pointer;
     font-size: 16px;
+    /*margin-bottom: 100px;*/
 }
 
 .next-btn{
-    margin: 50px auto;
-    text-align: center;
+    
+    position: relative;
+    margin: 50px 0px;
 }
 .btn-1{
     border: none;
     border-radius: 5px;
-    padding: 10px;
-    margin: 5px;
+    padding:  10px 15px;
     background-color: orange;
     cursor: pointer;
-    text-align: right;
+    font-size: 20px;
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    
 }
+
 
 
 

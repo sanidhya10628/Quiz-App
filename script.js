@@ -119,7 +119,7 @@ function myfunc()
     if(curr>=data.length)
     {
         document.getElementsByTagName('section')[0].style.display = "none";
-        document.getElementById('result').innerHTML = "<h1>Your Score is </h1>" + "<h1> " +score +"</h1>";
+        document.getElementById('result').innerHTML = `<h1> Your Score is ${score}</h1>`;
     }
     else{
         question.innerHTML = data[curr].question + "<br>";
