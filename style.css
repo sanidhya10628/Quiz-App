@@ -12,21 +12,25 @@ header{
     text-align: center;
     margin-top: 20px;
 }
+/*From here start button classes and id start*/
 .start-btn1{
     width: 50%;
     background-color: aqua;
     margin: 100px auto;
     text-align: center;
+    height: 200px;
 }
-#start{
+.start-btn{
     background-color: yellow;
-    text-align: center;
+    margin: 60px auto;
     border: none;
     border-radius: 5px;
-    padding: 10px;
-    margin: 50px auto;
+    padding: 20px;
+    font-size: 32px;
+    cursor: pointer;
 
 }
+/*here ends the start button properties.*/
 
 article{
     width: 50%;

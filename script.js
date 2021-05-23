@@ -139,3 +139,15 @@ function myfunc()
     }
 }
 
+
+
+// to remove the start button after click on it
+document.getElementById('start').addEventListener('click',function(){
+    let r = document.getElementById('sb')
+// console.log(r.classList);
+r.classList.remove('start-btn1');
+
+let s = document.getElementById('start');
+// console.log(s.classList);
+s.classList.remove('start-btn');
+})
