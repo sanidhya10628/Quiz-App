@@ -41,8 +41,8 @@ header{
    margin: 60px auto;
    margin-bottom: 10px;
    width: 80%;
-   /*border-radius: 5px;
-   border: 10px solid white;*/
+   border-radius: 5px; 
+   border: 10px solid white;
    /*height: 380px;*/
    /*height: 50%;*/
 }
@@ -63,14 +63,15 @@ header{
 .opt{
     
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     padding: 20px;
     margin: 10px 25px;
-    background-color: orange;
+    /* background-color: orange; */
     cursor: pointer;
     font-size: 18px;
     /*margin-bottom: 100px;*/
     font-family: 'Ubuntu', sans-serif;
+    background-color: rgb(173 242 246);
 }
 
 .next-btn{
