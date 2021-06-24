@@ -1,0 +1,15 @@
+.card-header{
+    font-size: 40px;
+}
+
+#registerbtn{
+    width:100%;
+}
+
+#login{
+    text-decoration: none;
+}
+
+#login span{
+    color: blue;
+}
