@@ -2,40 +2,32 @@ const express = require("express")
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
+const User = require('./models/User')
+const HomeRoute = require('./routes/app')
+const UsersRoute = require('./routes/users')
+const session = require('express-session')
 
-// mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
-//     console.log("Connection is on!....")
-// }).catch(err => {
-//     console.log("Error");
-//     console.log(err);
-// });
+mongoose.connect('mongodb://localhost:27017/Quiz-App', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+    console.log("Connection is on!....")
+}).catch(err => {
+    console.log("Error");
+    console.log(err);
+});
 
+
+
+
+// Body Parser
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }))
-
+app.use(session({ secret: 'notagoodsecret', resave: false, saveUninitialized: false }))
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
 
-app.get('/', (req, res) => {
-    res.render('home.ejs');
-})
-
-app.get('/register', (req, res) => {
-    res.render('register');
-})
-
-app.post('/register', (req, res) => {
-    const obj = req.body;
-    console.log(obj);
-    res.send("Got it")
-})
-
-app.get('/login', (req, res) => {
-    res.render('login');
-})
-
+app.use('/', HomeRoute); // for displaying Home Page
+app.use('/', UsersRoute); // for displaying Login and Register Pages
 
 app.listen(8000, () => {
     console.log("ON Port : 8000");

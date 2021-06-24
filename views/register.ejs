@@ -20,24 +20,79 @@
             <b>Register</b>
         </div>
         <div class="card-body">
-            <form action="/register" method="POST">
+            <form action="/register" method="POST" name="registerform" onsubmit="return validationForm()">
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label"><b>Name</b></label>
-                    <input type="text" class="form-control" name="name" id="formGroupExampleInput"
-                        placeholder="Type Your Name">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Type Your Name" required>
+
+
+
+                    <!-- Alert message on wrong name details -->
+
+
+                    <div class="Warningname">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <span id="message1"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    </div>
+                    <!-- End of Alert message -->
+
+
+
+
                 </div>
                 <div class="mb-3">
                     <label for="inputEmail4" class="form-label"><b>Email</b></label>
-                    <input type="email" class="form-control" name="email" id="inputEmail4"
-                        placeholder="Type Your Email">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Type Your Email"
+                        required>
+
+                    <!-- Alert message on wrong name details -->
+
+
+                    <div class="Warningname">
+
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <span id="message2"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    </div>
+                    <!-- End of Alert message -->
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword4" class="form-label"><b>Password</b></label>
-                    <input type="password" class="form-control" name="password" id="inputPassword4">
+                    <input type="password" class="form-control" name="password" id="password" required>
+
+                    <!-- Alert message on wrong name details -->
+
+
+                    <div class="Warningname">
+
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <span id="message3"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    </div>
+                    <!-- End of Alert message -->
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword4" class="form-label"><b>Confirm Password</b></label>
-                    <input type="password" class="form-control" id="inputPassword4">
+                    <input type="password" class="form-control" name="password2" id="password2" required>
+                    <!-- Alert message on wrong name details -->
+
+
+                    <div class="Warningname">
+
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <span id="message4"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    </div>
+                    <!-- End of Alert message -->
                 </div>
                 <button type="submit" class="btn btn-danger btn-lg" id="registerbtn">Register</button>
             </form>
@@ -46,7 +101,11 @@
         <div class="card-footer text-center">
             Have an Account ? <a href="/login" id="login"><span>Login</span></a>
         </div>
+        <!-- <div class="card-footer text-muted">
+            <a href="/">Back to Home Page</a>
+        </div> -->
     </div>
+    <script src="js/register.js"></script>
 </body>
 
 </html>
