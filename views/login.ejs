@@ -23,9 +23,9 @@
             <%- include("./partials/messages"); %>
                 <form action="/login" method="POST">
                     <div class="mb-3">
-                        <label for="inputEmail4" class="form-label"><b>Email</b></label>
-                        <input type="email" class="form-control" name="email" id="inputEmail4"
-                            placeholder="abc@gmail.com" value="<%= typeof email != 'undefined' ? email : '' %>">
+                        <label for="inputEmail4" class="form-label"><b>Username</b></label>
+                        <input type="text" class="form-control" name="username" id="inputEmail4"
+                            placeholder="abc@gmail.com" value="<%= typeof username != 'undefined' ? username : '' %>">
                     </div>
                     <div class="mb-3">
                         <label for="inputPassword4" class="form-label"><b>Password</b></label>

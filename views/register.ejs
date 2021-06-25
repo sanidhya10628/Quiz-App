@@ -24,6 +24,31 @@
             <%- include("./partials/messages"); %>
                 <form action="/register" method="POST" name="registerform" onsubmit="return validationForm()">
                     <div class="mb-3">
+                        <label for="username" class="form-label"><b>Username</b></label>
+                        <input type="text" class="form-control" name="username" id="username"
+                            placeholder="Type Your UserName"
+                            value="<%= typeof username != 'undefined' ? username : '' %>" required>
+
+
+
+                        <!-- Alert message on wrong name details -->
+
+
+                        <div class="Warningname">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <span id="message0"></span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+
+                        </div>
+                        <!-- End of Alert message -->
+
+
+
+
+                    </div>
+                    <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label"><b>Name</b></label>
                         <input type="text" class="form-control" name="name" id="name" placeholder="Type Your Name"
                             value="<%= typeof name != 'undefined' ? name : '' %>" required>
@@ -103,6 +128,7 @@
                         </div>
                         <!-- End of Alert message -->
                     </div>
+
                     <button type="submit" class="btn btn-danger btn-lg" id="registerbtn">Register</button>
                 </form>
                 <!-- <a href="#" class="btn btn-primary">Register</a> -->

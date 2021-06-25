@@ -6,7 +6,7 @@ const session = require('express-session')
 
 
 
-// middleware
+// middleware to access some pages to only logged in users
 const isLogin = (req, res, next) => {
     if (!req.session.user_id) {
         res.redirect('/');
@@ -24,6 +24,21 @@ router.get('/dashboard', isLogin, async (req, res) => {
     res.render('dashboard', { currUser })
 })
 
+
+router.get('/profile', isLogin, async (req, res) => {
+    const currUser = await User.findById(req.session.user_id);
+    res.render('profile', { currUser })
+})
+
+
+
+router.get('/leaderboard', isLogin, async (req, res) => {
+    const allUsers = await User.find({});
+    // console.log(allUsers);
+    res.render('leaderboard', { allUsers })
+
+})
+
 //login page
 router.get('/login', (req, res) => {
     res.render('login')
@@ -32,8 +47,8 @@ router.get('/login', (req, res) => {
 
 router.post('/login', async (req, res) => {
     let errors = [];
-    const { email, password } = req.body;
-    const currUser = await User.findOne({ email });
+    const { username, password } = req.body;
+    const currUser = await User.findOne({ username });
     if (currUser) {
         const isValidPassword = await bcrypt.compare(password, currUser.password);
         if (isValidPassword) {
@@ -41,13 +56,13 @@ router.post('/login', async (req, res) => {
             res.redirect('/dashboard')
         }
         else {
-            errors.push({ msg: 'Invalid Email or Password' })
-            res.render('login', { errors, email, password })
+            errors.push({ msg: 'Invalid Username or Password' })
+            res.render('login', { errors, username, password })
         }
     }
     else {
-        errors.push({ msg: 'Invalid Email or Password' })
-        res.render('/login', { errors, email, password })
+        errors.push({ msg: 'Invalid Username or Password' })
+        res.render('/login', { errors, username, password })
     }
 })
 
@@ -63,11 +78,13 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
     let errors = [];
-    const { name, email, password, password2 } = req.body;
-    const isUser = await User.findOne({ email: email })
-    if (!isUser) {
+    const { username, name, email, password, password2 } = req.body;
+    const isUsername = await User.findOne({ username: username })
+    const isuseremail = await User.findOne({ email: email })
+    if (!isUsername && !isuseremail) {
         const hash = await bcrypt.hash(password, 12);
         const newUser = await new User({
+            username,
             name,
             email,
             password: hash
@@ -76,9 +93,13 @@ router.post('/register', async (req, res) => {
         await newUser.save();
         res.redirect('/login');
     }
-    else {
+    else if (!isUsername) {
         errors.push({ msg: 'Email already exists! Try Using another Email' })
-        res.render('register', { errors, name, email, password, password2 });
+        res.render('register', { errors, username, name, email, password, password2 });
+    }
+    else {
+        errors.push({ msg: 'Username already exists! Try Using another Username' })
+        res.render('register', { errors, username, name, email, password, password2 });
     }
 })
 
