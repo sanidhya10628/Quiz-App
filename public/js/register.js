@@ -1,27 +1,31 @@
-console.log("It worked")
+// console.log("It worked")
 // document.getElementById('Warningname').style.display = "none";
 const warnings = document.getElementsByClassName('Warningname');
 for (let i = 0; i < warnings.length; i++) {
     warnings[i].style.display = "none";
 }
 function seterror(id) {
-    if (id === "name") {
+    if (id === "username") {
         document.getElementsByClassName('Warningname')[0].style.display = "block";
+        document.getElementById('message0').innerHTML = "Too Short Username";
+    }
+    if (id === "name") {
+        document.getElementsByClassName('Warningname')[1].style.display = "block";
         document.getElementById('message1').innerHTML = "Too Short Name";
     }
 
     if (id === "email") {
-        document.getElementsByClassName('Warningname')[1].style.display = "block";
+        document.getElementsByClassName('Warningname')[2].style.display = "block";
         document.getElementById('message2').innerHTML = "Incorrect Email";
     }
 
     if (id === "password") {
-        document.getElementsByClassName('Warningname')[2].style.display = "block";
+        document.getElementsByClassName('Warningname')[3].style.display = "block";
         document.getElementById('message3').innerHTML = "Password should be at least 6 characters";
     }
 
     if (id === "password2") {
-        document.getElementsByClassName('Warningname')[3].style.display = "block";
+        document.getElementsByClassName('Warningname')[4].style.display = "block";
         document.getElementById('message4').innerHTML = "Passwords do not match";
     }
 }

@@ -24,6 +24,22 @@ const UserSchema = new mongoose.Schema({
     highscore: {
         type: Number,
         required: true
+    },
+    date: {
+        type: String,
+        required: false
+    },
+    country: {
+        type: String,
+        required: false
+    },
+    city: {
+        type: String,
+        required: false
+    },
+    college: {
+        type: String,
+        required: false
     }
 
 })

@@ -45,7 +45,7 @@ router.get('/leaderboard', isLogin, async (req, res) => {
     // console.log(allUsers);
     //sort by high score
     const allUsers = allUser.sort((c1, c2) => (c1.highscore < c2.highscore) ? 1 : (c1.highscore > c2.highscore) ? -1 : 0);
-    console.log(allUsers)
+    // console.log(allUsers)
     res.render('leaderboard', { allUsers })
 
 })
@@ -152,9 +152,9 @@ router.post('/register', async (req, res) => {
     if (!isUsername && !isuseremail) {
         const hash = await bcrypt.hash(password, 12);
         const newUser = await new User({
-            username,
-            name,
-            email,
+            username: username,
+            name: name,
+            email: email,
             password: hash,
             highscore: 0
         })
@@ -183,5 +183,14 @@ router.post('/logout', (req, res) => {
 router.get('/settings', isLogin, async (req, res) => {
     const currUser = await User.findById(req.session.user_id);
     res.render('settings', { currUser })
+})
+
+
+router.post('/settings', isLogin, async (req, res) => {
+    // console.log(req.body);
+    const { name, email, date, country, city, college } = req.body;
+    const currUser = await User.findById(req.session.user_id);
+    const changeUser = await User.updateOne({ username: currUser.username }, { name: name, email: email, date: date, country: country, city: city, college: college })
+    res.redirect('/dashboard');
 })
 module.exports = router;
