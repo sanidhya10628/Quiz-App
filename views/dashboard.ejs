@@ -49,6 +49,49 @@
             <span id="last-login">Last Login:</span>
         </div>
     </section>
+    <article>
+        <div class="container-fluid">
+            <form action="/takequiz" method="GET">
+                <button type="submit" class="btn btn-primary btn-lg">Take Quiz</button>
+            </form>
+        </div>
+    </article>
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S.NO</th>
+                <th scope="col">Previous Quiz Marks</th>
+                <th scope="col">Previous Quiz Time Taken</th>
+                <th scope="col">Previous Quiz Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let cnt=1; %>
+                <% for(let pastquiz of PastQuizDetails) {%>
+                    <tr>
+                        <th scope="row">
+                            <%= cnt %>
+                        </th>
+                        <td>
+                            <%= pastquiz.lastQuizMarks %>
+                        </td>
+                        <td>
+                            <%= pastquiz.lastQuizTime %>
+                        </td>
+                        <td>
+                            <%= pastquiz.lastQuizDate %>
+                        </td>
+                    </tr>
+                    <% cnt=cnt+1 %>
+                        <% } %>
+        </tbody>
+    </table>
+
+
+
     <!-- <form action="/logout" method="POST">
         <button>Logout</button>
     </form> -->

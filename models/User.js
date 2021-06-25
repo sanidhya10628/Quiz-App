@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    highscore: {
+        type: Number,
+        required: true
     }
 
 })

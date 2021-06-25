@@ -6,23 +6,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeaderBoard</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/leaderboard.css">
 </head>
 
 <body>
-    <% for(let user of allUsers){ %>
-        <div>
-            <p>
-                <%= user.username %>
-            </p>
-            <p>
-                <%= user.name %>
-            </p>
-            <p>
-                <%= user.email %>
-            </p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">Quiz App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/profile">My Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/dashboard">DashBoard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/leaderboard">LeaderBoard</a>
+                    </li>
+                </ul>
+                <form class="d-flex" method="POST" action="/logout">
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                    <button class="btn btn-light" type="submit">Log Out</button>
+                </form>
+            </div>
         </div>
-        <hr>
-        <% } %>
+    </nav>
+    <h1 id="header-h1">LeaderBoard</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Highest Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let cnt=1; %>
+                <% for(let user of allUsers) { %>
+                    <tr>
+                        <th scope="row">
+                            <%= cnt %>
+                        </th>
+                        <td>
+                            <%= user.name %>
+                        </td>
+                        <td>
+                            <%= user.username %>
+                        </td>
+                        <td>
+                            <%= user.highscore %>
+                        </td>
+                    </tr>
+                    <% cnt++; %>
+                        <% } %>
+        </tbody>
+    </table>
 </body>
 
 </html>

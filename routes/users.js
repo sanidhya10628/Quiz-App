@@ -3,7 +3,12 @@ const router = express.Router();
 const User = require('../models/User')
 const bcrypt = require('bcrypt');
 const session = require('express-session')
-
+const quizdata = require('../quiz-data.json')
+const PastQuiz = require('../models/QuizHistory');
+const { render } = require('ejs');
+// const HighScore = require('../models/Score')
+// const quiz = quizdata['data'];
+// console.log(quiz) //array of objects
 
 
 // middleware to access some pages to only logged in users
@@ -21,7 +26,10 @@ const isLogin = (req, res, next) => {
 router.get('/dashboard', isLogin, async (req, res) => {
 
     const currUser = await User.findById(req.session.user_id);
-    res.render('dashboard', { currUser })
+    const PastQuizDetails = await PastQuiz.find({ username: currUser.username });
+    PastQuizDetails.reverse();
+    // console.log(PastQuizDetails)
+    res.render('dashboard', { currUser, PastQuizDetails })
 })
 
 
@@ -33,10 +41,70 @@ router.get('/profile', isLogin, async (req, res) => {
 
 
 router.get('/leaderboard', isLogin, async (req, res) => {
-    const allUsers = await User.find({});
+    const allUser = await User.find({});
     // console.log(allUsers);
+    //sort by high score
+    const allUsers = allUser.sort((c1, c2) => (c1.highscore < c2.highscore) ? 1 : (c1.highscore > c2.highscore) ? -1 : 0);
+    console.log(allUsers)
     res.render('leaderboard', { allUsers })
 
+})
+
+
+router.get('/takequiz', isLogin, async (req, res) => {
+    const quiz = quizdata['data'];
+    const currUser = await User.findById(req.session.user_id);
+    const username = currUser.username;
+    res.render('quiz', { quiz })
+})
+
+//result
+router.post('/result', isLogin, async (req, res) => {
+    // console.log(req.body);
+    let result = 0;
+    let cnt = 1;
+    const userInput = req.body;
+    const quiz = quizdata['data'];
+    for (let i = 0; i < quiz.length; i++) {
+        let temp = userInput[`question${cnt}`];
+        cnt++;
+
+        if (quiz[i].answer === temp) {
+            result++;
+        }
+    }
+
+    const currdate = new Date();
+    //For time 
+    const hours = currdate.getHours();
+    const min = currdate.getMinutes();
+    const sec = currdate.getSeconds();
+    const time = `${hours}:${min}:${sec}`;
+
+    //For Date
+    const dd = currdate.getDate();
+    let mm = currdate.getMonth() + 1;
+    const yyyy = currdate.getFullYear();
+    if (mm < 10) {
+        mm = `0${mm}`;
+    }
+    const cdate = `${dd}-${mm}-${yyyy}`;
+
+    // console.log(time);
+    // console.log(cdate);
+    const currUser = await User.findById(req.session.user_id);
+    if (result > currUser.highscore) {
+        const updatedUser = await User.updateOne({ username: currUser.username }, { highscore: result })
+    }
+    const currQuiz = await new PastQuiz({
+        lastQuizMarks: result,
+        lastQuizTime: time,
+        lastQuizDate: cdate,
+        username: currUser.username
+    })
+    await currQuiz.save();
+    // res.render('result', { result })
+    res.redirect('/dashboard')
 })
 
 //login page
@@ -87,7 +155,8 @@ router.post('/register', async (req, res) => {
             username,
             name,
             email,
-            password: hash
+            password: hash,
+            highscore: 0
         })
 
         await newUser.save();
@@ -109,5 +178,10 @@ router.post('/logout', (req, res) => {
     res.redirect('/');
 })
 
+// settings
 
+router.get('/settings', isLogin, async (req, res) => {
+    const currUser = await User.findById(req.session.user_id);
+    res.render('settings', { currUser })
+})
 module.exports = router;

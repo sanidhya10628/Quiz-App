@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/quiz.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1 id="welcome">Welcome
+    </h1>
+    <h3>This is a Quiz On HTML CSS and JavaScript</h3>
+    <hr>
+    <div class="quiz-form">
+        <form action="/result" method="POST">
+            <% for(let ques of quiz) {%>
+
+                <div class="mb">
+                    <label for="question<%= ques.id %>" class="form-label">
+                        <%= ques.question %>
+                    </label>
+                </div>
+
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question<%= ques.id %>" id="<%= ques.option1 %>"
+                        value="<%= ques.option1 %>">
+                    <label class="form-check-label" for="<%= ques.option1 %>">
+                        <%= ques.option1 %>
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question<%= ques.id %>" id="<%= ques.option2 %>"
+                        value="<%= ques.option2 %>">
+                    <label class="form-check-label" for="<%= ques.option2 %>">
+                        <%= ques.option2 %>
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question<%= ques.id %>" id="<%= ques.option3 %>"
+                        value="<%= ques.option3 %>">
+                    <label class="form-check-label" for="<%= ques.option3 %>">
+                        <%= ques.option3 %>
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question<%= ques.id %>" id="<%= ques.option4 %>"
+                        value="<%= ques.option4 %>">
+                    <label class="form-check-label" for="<%= ques.option4    %>">
+                        <%= ques.option4 %>
+                    </label>
+                </div>
+
+
+                <hr>
+                <% } %>
+
+                    <button type="submit" class="btn btn-primary btn-lg" id="start-quiz-btn">Submit Quiz </button>
+        </form>
+    </div>
+
+    <!-- <script>
+        console.log('Hi')
+    </script> -->
+    <script src="js/quiz.js"></script>
+</body>
+
+</html>
