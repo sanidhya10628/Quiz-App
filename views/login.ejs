@@ -20,18 +20,20 @@
             <b>Login</b>
         </div>
         <div class="card-body">
-            <form action="/login" method="POST">
-                <div class="mb-3">
-                    <label for="inputEmail4" class="form-label"><b>Email</b></label>
-                    <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="abc@gmail.com">
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword4" class="form-label"><b>Password</b></label>
-                    <input type="password" class="form-control" name="password" id="inputPassword4">
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg" id="registerbtn">Login</button>
-            </form>
-            <!-- <a href="#" class="btn btn-primary">Register</a> -->
+            <%- include("./partials/messages"); %>
+                <form action="/login" method="POST">
+                    <div class="mb-3">
+                        <label for="inputEmail4" class="form-label"><b>Email</b></label>
+                        <input type="email" class="form-control" name="email" id="inputEmail4"
+                            placeholder="abc@gmail.com" value="<%= typeof email != 'undefined' ? email : '' %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPassword4" class="form-label"><b>Password</b></label>
+                        <input type="password" class="form-control" name="password" id="inputPassword4">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" id="registerbtn">Login</button>
+                </form>
+                <!-- <a href="#" class="btn btn-primary">Register</a> -->
         </div>
         <div class="card-footer text-center">
             Don't Have an Account ? <a href="/register" id="login"><span>Register</span></a>
