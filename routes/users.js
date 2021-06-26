@@ -3,10 +3,10 @@ const router = express.Router();
 const User = require('../models/User')
 const bcrypt = require('bcrypt');
 const session = require('express-session')
-const quizdata = require('../quiz-data.json')
+// const quizdata = require('../quiz-data.json')
 const PastQuiz = require('../models/QuizHistory');
 const { render } = require('ejs');
-
+const fetch = require('node-fetch')
 
 // const HighScore = require('../models/Score')
 // const quiz = quizdata['data'];
@@ -53,8 +53,11 @@ router.get('/leaderboard', isLogin, async (req, res) => {
 })
 
 
-router.get('/takequiz', isLogin, async (req, res) => {
-    const quiz = quizdata['data'];
+router.post('/takequiz', isLogin, async (req, res) => {
+    const { noofquestion, selectcategory, selectdifficulty, selecttype } = req.body;
+    const data = await fetch(`https://opentdb.com/api.php?amount=${noofquestion}&category=${selectcategory}&difficulty=${selectdifficulty}&type=${selecttype}`);
+    const quizd = await data.json();
+    const quiz = quizd['results'];
     const currUser = await User.findById(req.session.user_id);
     const username = currUser.username;
     res.render('quiz', { quiz })
@@ -66,7 +69,7 @@ router.post('/result', isLogin, async (req, res) => {
     let result = 0;
     let cnt = 1;
     const userInput = req.body;
-    const quiz = quizdata['data'];
+    // const quiz = quizdata['data'];
     for (let i = 0; i < quiz.length; i++) {
         let temp = userInput[`question${cnt}`];
         cnt++;

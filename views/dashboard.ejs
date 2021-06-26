@@ -51,7 +51,42 @@
     </section>
     <article>
         <div class="container-fluid">
-            <form action="/takequiz" method="GET">
+            <form action="/takequiz" method="POST">
+
+
+                <div class="mb-3">
+                    <label for="noofquestion" class="form-label"><b>No of Question</b></label>
+                    <input type="number" class="form-control" name="noofquestion" id="noofquestion"
+                        placeholder="example:10" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="selectcategory"><b>Select Category</b></label>
+                    <select class="form-select" id="selectcategory" name="selectcategory">
+                        <option value="21">Sports</option>
+                        <option value="18">Computer Science</option>
+                        <option value="24">Politics</option>
+                        <option value="11">Films</option>
+                        <option value="26">Celebrities</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="selectdifficulty"><b>Select Difficulty</b></label>
+                    <select class="form-select" id="selectdifficulty" name="selectdifficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="selecttype"><b>Select Type</b></label>
+                    <select class="form-select" id="selecttype" name="selecttype">
+                        <option value="multiple">Multiple Choice</option>
+                        <option value="boolean">True/False</option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary btn-lg">Take Quiz</button>
             </form>
         </div>

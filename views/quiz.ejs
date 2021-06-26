@@ -20,52 +20,54 @@
     <hr>
     <div class="quiz-form">
         <form action="/result" method="POST">
-            <% for(let ques of quiz) {%>
+            <% let cnt=1; %>
+                <% for(let ques of quiz) {%>
 
-                <div class="mb">
-                    <label for="question<%= ques.id %>" class="form-label">
-                        <%= ques.question %>
-                    </label>
-                </div>
+                    <div class="mb">
+                        <label for="question<%= cnt %>" class="form-label">
 
+                            <%= ques.question %>
+                        </label>
+                    </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="question<%= ques.id %>" id="<%= ques.option1 %>"
-                        value="<%= ques.option1 %>">
-                    <label class="form-check-label" for="<%= ques.option1 %>">
-                        <%= ques.option1 %>
-                    </label>
-                </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question<%= cnt%>"
+                            id="<%= ques.correct_answer %>" value="<%= ques.correct_answer %>">
+                        <label class="form-check-label" for="<%= ques.correct_answer %>">
+                            <%= ques.correct_answer %>
+                        </label>
+                    </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="question<%= ques.id %>" id="<%= ques.option2 %>"
-                        value="<%= ques.option2 %>">
-                    <label class="form-check-label" for="<%= ques.option2 %>">
-                        <%= ques.option2 %>
-                    </label>
-                </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question<%= cnt %>"
+                            id="<%= ques.incorrect_answers[0] %>" value="<%= ques.incorrect_answers[0] %>">
+                        <label class="form-check-label" for="<%= ques.incorrect_answers[0] %>">
+                            <%= ques.incorrect_answers[0] %>
+                        </label>
+                    </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="question<%= ques.id %>" id="<%= ques.option3 %>"
-                        value="<%= ques.option3 %>">
-                    <label class="form-check-label" for="<%= ques.option3 %>">
-                        <%= ques.option3 %>
-                    </label>
-                </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question<%= cnt %>"
+                            id="<%= ques.incorrect_answers[1] %>" value="<%= ques.incorrect_answers[1] %>">
+                        <label class="form-check-label" for="<%= ques.incorrect_answers[1] %>">
+                            <%= ques.incorrect_answers[1] %>
+                        </label>
+                    </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="question<%= ques.id %>" id="<%= ques.option4 %>"
-                        value="<%= ques.option4 %>">
-                    <label class="form-check-label" for="<%= ques.option4    %>">
-                        <%= ques.option4 %>
-                    </label>
-                </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question<%= cnt %>"
+                            id="<%= ques.incorrect_answers[2] %>" value="<%= ques.incorrect_answers[2] %>">
+                        <label class="form-check-label" for="<%= ques.incorrect_answers[2]    %>">
+                            <%= ques.incorrect_answers[2] %>
+                        </label>
+                    </div>
+                    <% cnt++; %>
 
+                        <hr>
+                        <% } %>
 
-                <hr>
-                <% } %>
-
-                    <button type="submit" class="btn btn-primary btn-lg" id="start-quiz-btn">Submit Quiz </button>
+                            <button type="submit" class="btn btn-primary btn-lg" id="start-quiz-btn">Submit Quiz
+                            </button>
         </form>
     </div>
 
