@@ -17,17 +17,17 @@
     <div class="card">
         <div class="card-header text-center">
             <i class="fas fa-user-plus"></i>
-            <b>Register</b>
+            <b>Register as Admin</b>
         </div>
         <div class="card-body">
             <!-- Include partials to include errors messages -->
-            <%- include("./partials/messages"); %>
-                <form action="/register" method="POST" name="registerform" onsubmit="return validationForm()">
+            <%- include("../partials/messages"); %>
+                <form action="/adminregister" method="POST" name="registerform" onsubmit="return validationForm()">
                     <div class="mb-3">
-                        <label for="username" class="form-label"><b>Username</b></label>
-                        <input type="text" class="form-control" name="username" id="username"
-                            placeholder="Type Your UserName"
-                            value="<%= typeof username != 'undefined' ? username : '' %>" required>
+                        <label for="adminId" class="form-label"><b>Admin Id:</b></label>
+                        <input type="text" class="form-control" name="adminId" id="adminId"
+                            placeholder="Type Your UserName" value="<%= typeof adminId != 'undefined' ? adminId : '' %>"
+                            required>
 
 
 
@@ -129,24 +129,16 @@
                         <!-- End of Alert message -->
                     </div>
 
-                    <button type="submit" class="btn btn-danger btn-lg" id="registerbtn">Register</button>
+                    <button type="submit" class="btn btn-danger btn-lg" id="registerbtn">Register as Admin</button>
                 </form>
                 <!-- <a href="#" class="btn btn-primary">Register</a> -->
-                <!-- <button type="button" class="btn btn-primary">Back to Home Page</button> -->
-
         </div>
-        <div class="card-footer text-center" id="card-footer">
-            Have an Account ? <a href="/login" id="login"><span>Login</span></a>
-            <!-- <button type="button" class="btn btn-primary">Back to Home Page</button> -->
-            <a href="/" class="btn btn-primary">Back to Home Page</a>
-
-            <!-- <a href="/adminregister">Register an Admin</a> -->
+        <div class="card-footer text-center">
+            Have an Account ? <a href="/adminlogin" id="login"><span>Login as Admin</span></a>
         </div>
-        <!-- <button type="button" class="btn btn-primary">Back to Home Page</button> -->
         <!-- <div class="card-footer text-muted">
             <a href="/">Back to Home Page</a>
         </div> -->
-
     </div>
     <script src="js/register.js"></script>
 </body>

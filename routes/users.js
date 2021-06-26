@@ -6,6 +6,8 @@ const session = require('express-session')
 const quizdata = require('../quiz-data.json')
 const PastQuiz = require('../models/QuizHistory');
 const { render } = require('ejs');
+
+
 // const HighScore = require('../models/Score')
 // const quiz = quizdata['data'];
 // console.log(quiz) //array of objects
@@ -173,7 +175,7 @@ router.post('/register', async (req, res) => {
 })
 
 // Log Out
-router.post('/logout', (req, res) => {
+router.post('/logout', isLogin, (req, res) => {
     req.session.user_id = null;
     res.redirect('/');
 })

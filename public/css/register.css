@@ -13,3 +13,8 @@
 #login span{
     color: red;
 }
+
+#card-footer .btn-primary{
+    display: inline-block;
+    margin: 0px 30px;
+}

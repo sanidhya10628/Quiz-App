@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-header text-center">
+            <i class="fas fa-sign-in-alt"></i>
+            <b>Login as Admin</b>
+        </div>
+        <div class="card-body">
+            <%- include("../partials/messages"); %>
+                <form action="/adminlogin" method="POST">
+                    <div class="mb-3">
+                        <label for="adminId" class="form-label"><b>Admin Id</b></label>
+                        <input type="text" class="form-control" name="adminId" id="adminId" placeholder="abc@gmail.com"
+                            value="<%= typeof adminId != 'undefined' ? adminId : '' %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPassword4" class="form-label"><b>Password</b></label>
+                        <input type="password" class="form-control" name="password" id="inputPassword4">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" id="registerbtn">Login</button>
+                </form>
+                <!-- <a href="#" class="btn btn-primary">Register</a> -->
+        </div>
+        <div class="card-footer text-center">
+            Don't Have an Account ? <a href="/adminregister" id="login"><span>Register as Admin</span></a>
+        </div>
+    </div>
+</body>
+
+</html>
