@@ -104,7 +104,9 @@ router.get('/adminprofile', isAdminLogin, async (req, res) => {
     res.render('admin/adminprofile', { currAdmin })
 })
 
-
+router.get('/createquiz', isAdminLogin, (req, res) => {
+    res.render('admin/createquiz')
+})
 
 
 // Log Out

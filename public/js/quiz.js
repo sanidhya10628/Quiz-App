@@ -51,8 +51,8 @@
 ]
 */
 
-console.log("welcome")
+// console.log("welcome")
 
-document.getElementById('start-quiz-btn').addEventListener('click', () => {
-
-})
+// document.getElementById('start-quiz-btn').addEventListener('click', () => {
+//     document.forms['quizform']['']
+// })
