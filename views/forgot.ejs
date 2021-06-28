@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgotten</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/forgot.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-header text-center">
+            <b>Quiz App</b>
+        </div>
+    </div>
+
+    <div class="card forms-cards">
+        <div class="card-body">
+            <p>To reset your <b>password</b>, submit your <b>username</b> or your <b>email address</b> below. If we can
+                find you in the
+                database, an email will be sent to your email address, with instructions how to get access again.
+            </p>
+        </div>
+    </div>
+    <div class="card forms-cards">
+        <div class="card-body">
+            <%- include("./partials/messages"); %>
+                <form action="/forgotbyusername" method="POST">
+                    <div class="mb-3">
+                        <label for="inputEmail4" class="form-label"><b>Search By Username</b></label>
+                        <input type="text" class="form-control" name="username" id="inputEmail4">
+                    </div>
+                    <center>
+                        <button type="submit" class="btn btn-primary btn-lg" id="registerbtn">Search</button>
+                    </center>
+                </form>
+        </div>
+    </div>
+
+
+    <div class="card forms-cards">
+        <div class="card-body">
+            <form action="/forgotbyemail" method="POST"></form>
+            <div class="mb-3">
+                <label for="inputPassword4" class="form-label"><b>Search By Email</b></label>
+                <input type="email" class="form-control" name="email" id="email">
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" id="registerbtn">Search</button>
+            </form>
+            <!-- <a href="#" class="btn btn-primary">Register</a> -->
+        </div>
+        <div class="card-footer text-center">
+            <a href="/login" id="backtologin"><span>Back to Login Page</span></a>
+        </div>
+    </div>
+</body>
+
+</html>
