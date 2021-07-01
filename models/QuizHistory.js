@@ -7,15 +7,23 @@ const PastQuizSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    lastQuizTime: {
-        type: String,
-        required: true
-    },
-    lastQuizDate: {
-        type: String,
-        required: true
-    },
     username: {
+        type: String,
+        required: true
+    },
+    timetaken: {
+        type: Number,
+        required: true
+    },
+    NumberOfQuestion: {
+        type: Number,
+        required: true
+    },
+    Category: {
+        type: String,
+        required: true
+    },
+    Difficulty: {
         type: String,
         required: true
     }

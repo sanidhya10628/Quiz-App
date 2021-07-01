@@ -25,21 +25,15 @@
 
                     <div class="mb">
                         <label for="question<%= cnt %>" class="form-label">
+                            <b>
+                                <%= cnt %>. <%= ques.question %>
+                            </b>
 
-                            <%= ques.question %>
                         </label>
                     </div>
 
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question<%= cnt%>"
-                            id="<%= ques.correct_answer %>" value="<%= ques.correct_answer %>">
-                        <label class="form-check-label" for="<%= ques.correct_answer %>">
-                            <%= ques.correct_answer %>
-                        </label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question<%= cnt %>"
                             id="<%= ques.incorrect_answers[0] %>" value="<%= ques.incorrect_answers[0] %>">
                         <label class="form-check-label" for="<%= ques.incorrect_answers[0] %>">
                             <%= ques.incorrect_answers[0] %>
@@ -57,10 +51,19 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="question<%= cnt %>"
                             id="<%= ques.incorrect_answers[2] %>" value="<%= ques.incorrect_answers[2] %>">
-                        <label class="form-check-label" for="<%= ques.incorrect_answers[2]    %>">
+                        <label class="form-check-label" for="<%= ques.incorrect_answers[2] %>">
                             <%= ques.incorrect_answers[2] %>
                         </label>
                     </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question<%= cnt %>"
+                            id="<%= ques.incorrect_answers[3] %>" value="<%= ques.incorrect_answers[3] %>">
+                        <label class="form-check-label" for="<%= ques.incorrect_answers[3]    %>">
+                            <%= ques.incorrect_answers[3] %>
+                        </label>
+                    </div>
+
                     <% cnt++; %>
 
                         <hr>

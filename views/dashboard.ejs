@@ -46,12 +46,12 @@
                     <%= currUser.name %>
                 </strong></h2>
 
-            <span id="last-login">Last Login:</span>
+            <span id="last-login">Last Login: <%= LastLogin.LastUserLogin %> </span>
         </div>
     </section>
     <article>
         <div class="container-fluid">
-            <form action="/dashboard" method="GET" name="quizform" onsubmit="return a() ">
+            <form action="/takequiz" method="POST" name="quizform" onsubmit="">
 
 
                 <div class="mb-3">
@@ -80,13 +80,6 @@
                     </select>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="selecttype"><b>Select Type</b></label>
-                    <select class="form-select" id="selecttype" name="selecttype">
-                        <option value="multiple">Multiple Choice</option>
-                        <option value="boolean">True/False</option>
-                    </select>
-                </div>
                 <button type="submit" class="btn btn-primary btn-lg">Take Quiz</button>
             </form>
         </div>
@@ -98,9 +91,10 @@
         <thead>
             <tr>
                 <th scope="col">S.NO</th>
-                <th scope="col">Previous Quiz Marks</th>
-                <th scope="col">Previous Quiz Time Taken</th>
-                <th scope="col">Previous Quiz Date</th>
+                <th scope="col">Quiz Marks</th>
+                <th scope="col">Time Taken</th>
+                <th scope="col">Category</th>
+
             </tr>
         </thead>
         <tbody>
@@ -111,14 +105,17 @@
                             <%= cnt %>
                         </th>
                         <td>
-                            <%= pastquiz.lastQuizMarks %>
+                            <%= pastquiz.lastQuizMarks %> Out of ( <b>
+                                    <%= pastquiz.NumberOfQuestion %>
+                                </b> )
                         </td>
                         <td>
-                            <%= pastquiz.lastQuizTime %>
+                            <%= pastquiz.timetaken %>
                         </td>
                         <td>
-                            <%= pastquiz.lastQuizDate %>
+                            <%= pastquiz.Category %>
                         </td>
+
                     </tr>
                     <% cnt=cnt+1 %>
                         <% } %>
