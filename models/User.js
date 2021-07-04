@@ -17,10 +17,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    date: {
-        type: Date,
-        default: Date.now
-    },
     highscore: {
         type: Number,
         required: true

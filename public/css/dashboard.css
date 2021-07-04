@@ -8,8 +8,12 @@ section{
     margin: 20px 0px;
 }
 
-#section-h2{
+#section-h3{
     display: inline-block;
+}
+#section-h3 strong{
+    margin-left: 10px;
+    color: #c04000;
 }
 #last-login{
     display: inline-block;

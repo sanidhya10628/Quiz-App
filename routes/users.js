@@ -43,28 +43,44 @@ router.get('/profile', isLogin, async (req, res) => {
 
 router.get('/leaderboard', isLogin, async (req, res) => {
     const allUser = await User.find({});
+    const QuizDetails = await PastQuiz.find({});
+    // console.log(QuizDetails)
     // console.log(allUsers);
     //sort by high score
     const allUsers = allUser.sort((c1, c2) => (c1.highscore < c2.highscore) ? 1 : (c1.highscore > c2.highscore) ? -1 : 0);
     // console.log(allUsers)
-    res.render('leaderboard', { allUsers })
+    res.render('leaderboard', { allUsers, QuizDetails })
 
 })
 
 let quizAnswers = [];
 let quizInfo = {};
 router.post('/takequiz', isLogin, async (req, res) => {
-    const { noofquestion, selectcategory, selectdifficulty } = req.body;
+    let { noofquestion, selectcategory, selectdifficulty } = req.body;
+    const selecttype = 'multiple';
+    const data = await fetch(`https://opentdb.com/api.php?amount=${noofquestion}&category=${selectcategory}&difficulty=${selectdifficulty}&type=${selecttype}`);
+    const quizd = await data.json();
+    const quiz = quizd['results'];
+    if (selectcategory == 11) {
+        selectcategory = "Films";
+    }
+    else if (selectcategory == 18) {
+        selectcategory = "Computer Science";
+    }
+    else if (selectcategory == 21) {
+        selectcategory = "Sports";
+    }
+    else if (selectcategory == 24) {
+        selectcategory = "Politics";
+    }
+    else if (selectcategory == 26) {
+        selectcategory = "Celebrities";
+    }
     quizInfo = {
         noofquestion: noofquestion,
         selectcategory: selectcategory,
         selectdifficulty: selectdifficulty
     }
-    const selecttype = 'multiple';
-    const data = await fetch(`https://opentdb.com/api.php?amount=${noofquestion}&category=${selectcategory}&difficulty=${selectdifficulty}&type=${selecttype}`);
-    const quizd = await data.json();
-    const quiz = quizd['results'];
-
 
     for (let i = 0; i < quiz.length; i++) {
         quizAnswers.push(quiz[i]['correct_answer']);
