@@ -14,9 +14,11 @@
 </head>
 
 <body>
-    <h1 id="welcome">Welcome
+    <h1 id="welcome">
+        <i class="fas fa-user"></i>
+        <%=username %>
     </h1>
-    <h3>This is a Quiz On HTML CSS and JavaScript</h3>
+    <!-- <h3>This is a Quiz On HTML CSS and JavaScript</h3> -->
     <hr>
     <div class="quiz-form">
         <form action="/result" method="POST">
@@ -24,15 +26,19 @@
                 <% for(let ques of quiz) {%>
 
                     <div class="mb">
+                        <img src="images/question.png" alt="">
+
                         <label for="question<%= cnt %>" class="form-label">
                             <b>
+
                                 <%= cnt %>. <%= ques.question %>
                             </b>
 
                         </label>
                     </div>
-
+                    <!-- <img src="images/choice.png" alt=""> -->
                     <div class="form-check">
+
                         <input class="form-check-input" type="radio" name="question<%= cnt%>"
                             id="<%= ques.incorrect_answers[0] %>" value="<%= ques.incorrect_answers[0] %>">
                         <label class="form-check-label" for="<%= ques.incorrect_answers[0] %>">

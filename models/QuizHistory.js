@@ -11,10 +11,6 @@ const PastQuizSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    timetaken: {
-        type: Number,
-        required: true
-    },
     NumberOfQuestion: {
         type: Number,
         required: true

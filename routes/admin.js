@@ -108,7 +108,9 @@ router.get('/createquiz', isAdminLogin, (req, res) => {
     res.render('admin/createquiz')
 })
 
-
+router.get('/adminleaderboard', isAdminLogin, (req, res) => {
+    res.render('admin/adminleaderboard')
+})
 // Log Out
 router.post('/adminlogout', isAdminLogin, (req, res) => {
     req.session.user_id = null;

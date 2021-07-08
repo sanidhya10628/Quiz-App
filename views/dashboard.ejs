@@ -11,131 +11,173 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Uchen&display=swap" rel="stylesheet">
+
+
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">Quiz App</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/profile">My Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/dashboard">DashBoard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/leaderboard">LeaderBoard</a>
-                    </li>
-                </ul>
-                <form class="d-flex" method="POST" action="/logout">
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                    <button class="btn btn-light" type="submit">Log Out</button>
-                </form>
+
+    <% if(quizFlash.flashMessage!='' ) {%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>
+                <%= quizFlash.flashMessage %>
+            </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% } %>
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="">Quiz App</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/profile">My Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/dashboard">DashBoard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/leaderboard">LeaderBoard</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex" method="POST" action="/logout">
+                            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                            <button class="btn btn-light" type="submit">Log Out</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <section>
+                <div class="container-fluid">
+                    <div class="position-relative">
+                        <h3 id="section-h3">Welcome:
+                            <strong>
+                                <!-- <img src="images/user.png" alt=""> -->
+                                <%= currUser.name %>
+                            </strong>
+                        </h3>
+
+                        <div class="position-absolute top-50 end-0 translate-middle-y" id="login-info">
+                            <b>
+                                <span style="color: red;">Login Info:</span>
+                                <%= LastLogin[0].LastUserLogin %>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr>
+            <div class="heading">
+                <center>
+                    <h4><img src="images/test.png" alt=""> Quiz</h4>
+                </center>
             </div>
-        </div>
-    </nav>
-    <section>
-        <div class="container-fluid">
-            <h3 id="section-h3">Welcome: <strong>
-                    <%= currUser.name %>
-                </strong></h3>
-
-            <span id="last-login">Last Login: <%= LastLogin.LastUserLogin %> </span>
-        </div>
-    </section>
-
-    <div class="heading">
-        Kuch heading dena hai
-    </div>
 
 
-    <article>
-        <div class="container-fluid">
-            <form action="/takequiz" method="POST" name="quizform" onsubmit="">
+
+            <article>
+                <div class="container-fluid">
+                    <form action="/takequiz" method="POST" name="quizform" onsubmit="">
 
 
-                <div class="mb-3">
-                    <label for="noofquestion" class="form-label"><b>No of Question</b></label>
-                    <input type="number" class="form-control" name="noofquestion" id="noofquestion"
-                        placeholder="example:10" required>
+                        <div class="mb-3">
+                            <label for="noofquestion" class="form-label"><b>No of Question</b></label>
+                            <input type="number" class="form-control" name="noofquestion" id="noofquestion"
+                                placeholder="example:10" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="selectcategory"><b>Select Category</b></label>
+                            <select class="form-select" id="selectcategory" name="selectcategory">
+                                <option value="21">Sports</option>
+                                <option value="18">Computer Science</option>
+                                <option value="24">Politics</option>
+                                <option value="11">Films</option>
+                                <option value="26">Celebrities</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="selectdifficulty"><b>Select Difficulty</b></label>
+                            <select class="form-select" id="selectdifficulty" name="selectdifficulty">
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+
+                        <center><button type="submit" class="btn btn-primary btn-lg">Take Quiz</button></center>
+                    </form>
                 </div>
+            </article>
+            <hr>
+            <div class="heading">
+                <center>
+                    <h4><img src="images/scoreboard-40.png" alt=""> ScoreBoard</h4>
+                </center>
+            </div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="selectcategory"><b>Select Category</b></label>
-                    <select class="form-select" id="selectcategory" name="selectcategory">
-                        <option value="21">Sports</option>
-                        <option value="18">Computer Science</option>
-                        <option value="24">Politics</option>
-                        <option value="11">Films</option>
-                        <option value="26">Celebrities</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="selectdifficulty"><b>Select Difficulty</b></label>
-                    <select class="form-select" id="selectdifficulty" name="selectdifficulty">
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-lg">Take Quiz</button>
-            </form>
-        </div>
-    </article>
-
-    <div class="heading">
-        Kuch heading dena hai
-    </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">S.NO</th>
-                <th scope="col">Quiz Marks</th>
-                <th scope="col">Time Taken</th>
-                <th scope="col">Category</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <% let cnt=1; %>
-                <% for(let pastquiz of PastQuizDetails) {%>
+            <table class="table">
+                <thead>
                     <tr>
-                        <th scope="row">
-                            <%= cnt %>
-                        </th>
-                        <td>
-                            <%= pastquiz.lastQuizMarks %> Out of ( <b>
-                                    <%= pastquiz.NumberOfQuestion %>
-                                </b> )
-                        </td>
-                        <td>
-                            <%= pastquiz.timetaken %>
-                        </td>
-                        <td>
-                            <%= pastquiz.Category %>
-                        </td>
+                        <th scope="col">S.NO</th>
+                        <th scope="col">Quiz Marks</th>
+                        <th scope="col">Difficulty</th>
+                        <th scope="col">Category</th>
 
                     </tr>
-                    <% cnt=cnt+1 %>
-                        <% } %>
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    <% let cnt=1; %>
+                        <% for(let pastquiz of PastQuizDetails) {%>
+                            <tr>
+                                <th scope="row">
+                                    <%= cnt %>
+                                </th>
+                                <td>
+                                    <%= pastquiz.lastQuizMarks %> Out of ( <b>
+                                            <%= pastquiz.NumberOfQuestion %>
+                                        </b> )
+                                </td>
+                                <td>
+                                    <%= pastquiz.Difficulty %>
+                                </td>
+                                <td>
+                                    <%= pastquiz.Category %>
+                                </td>
+
+                            </tr>
+                            <% cnt=cnt+1 %>
+                                <% } %>
+                </tbody>
+            </table>
 
 
 
-    <!-- <form action="/logout" method="POST">
+            <!-- <form action="/logout" method="POST">
         <button>Logout</button>
     </form> -->
-    <script src="js/dashboard.js"></script>
+            <script src="js/dashboard.js"></script>
 </body>
 
 </html>

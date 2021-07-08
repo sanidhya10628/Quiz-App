@@ -27,10 +27,16 @@ router.get('/dashboard', isLogin, async (req, res) => {
     const currUser = await User.findById(req.session.user_id);
     const PastQuizDetails = await PastQuiz.find({ username: currUser.username });
     const LastLogin = await LastLoginDetail.find({ username: currUser.username });
-    // console.log(LastLogin);
     PastQuizDetails.reverse();
     // console.log(PastQuizDetails)
-    res.render('dashboard', { currUser, PastQuizDetails, LastLogin })
+    /*flashm = {
+        m: req.flash('success-login')
+    }*/
+
+    quizFlash = {
+        flashMessage: req.flash('quiz-submit')
+    }
+    res.render('dashboard', { currUser, PastQuizDetails, LastLogin, quizFlash })
 })
 
 
@@ -92,7 +98,7 @@ router.post('/takequiz', isLogin, async (req, res) => {
 
     const currUser = await User.findById(req.session.user_id);
     const username = currUser.username;
-    res.render('quiz', { quiz })
+    res.render('quiz', { quiz, username })
 })
 
 //result
@@ -118,7 +124,6 @@ router.post('/result', isLogin, async (req, res) => {
     const currQuiz = await new PastQuiz({
         lastQuizMarks: result,
         username: currUser.username,
-        timetaken: 12,
         NumberOfQuestion: quizInfo.noofquestion,
         Category: quizInfo.selectcategory,
         Difficulty: quizInfo.selectdifficulty,
@@ -126,13 +131,14 @@ router.post('/result', isLogin, async (req, res) => {
     })
     await currQuiz.save();
     // res.render('result', { result })
+    req.flash('quiz-submit', 'Quiz Submitted Successfully')
     res.redirect('/dashboard')
     // res.send(`Your Score is ${result}`);
 })
 
 //login page
 router.get('/login', (req, res) => {
-    res.render('login')
+    res.render('login', { m: req.flash('success') })
 })
 
 
@@ -145,12 +151,45 @@ router.post('/login', async (req, res) => {
         if (isValidPassword) {
             req.session.user_id = currUser._id;
             const d = new Date();
-            const newdate = await LastLoginDetail({
-                LastUserLogin: d,
-                username: username
-            })
-            await newdate.save();
-            res.redirect('/dashboard')
+            let date = d.getDate();
+            let month = d.getMonth();
+            let year = d.getFullYear();
+            let hh = d.getHours();
+            let mm = d.getMinutes();
+            let ss = d.getSeconds();
+            let day = d.getDay();
+            if (hh < 10) {
+                hh = `0${hh}`;
+            }
+            if (mm < 10) {
+                mm = `0${mm}`;
+            }
+            const time = `${hh}:${mm}`;
+            const dayArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday'];
+            day = dayArray[day];
+            const monthArray = ['Jan', 'Feb', 'March', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+            month = monthArray[month];
+
+            const finalDateStr = `${month} ${date} ${year} ${time}`;
+            /*Last Login Code*/
+            const isLastLogin = await LastLoginDetail.findOne({ username: username });
+            // console.log(isLastLogin)
+            if (!isLastLogin) {
+
+                const PreviousLogin = await new LastLoginDetail({
+                    LastUserLogin: finalDateStr,
+                    username: username,
+                })
+
+                await PreviousLogin.save();
+            }
+            else {
+                const PreviousLogin = await LastLoginDetail.updateOne({ username: username }, { LastUserLogin: finalDateStr });
+            }
+            /*Last Login Code*/
+
+            req.flash('success-login', `Logged in SucessFully!.`);
+            res.redirect('/dashboard');
         }
         else {
             errors.push({ msg: 'Invalid Username or Password' })
@@ -189,6 +228,7 @@ router.post('/register', async (req, res) => {
         })
 
         await newUser.save();
+        req.flash('success', 'Successfully Created User Profile!. Please Login to continue.');
         res.redirect('/login');
     }
     else if (!isUsername) {
