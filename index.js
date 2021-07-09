@@ -14,7 +14,7 @@ const UsersRoute = require('./routes/users')
 const session = require('express-session')
 const flash = require('connect-flash');
 // const MongoDBStore = require("connect-mongo");
-// const AdminRoute = require('./routes/admin')
+
 
 
 // 'mongodb://localhost:27017/Quiz-App';
@@ -58,7 +58,7 @@ app.set('views', path.join(__dirname, '/views'));
 
 app.use('/', HomeRoute); // for displaying Home Page
 app.use('/', UsersRoute); // for displaying Login and Register Pages
-// app.use('/', AdminRoute); // for displaying Admin Route
+
 
 
 const PORT = process.env.PORT || 8000;

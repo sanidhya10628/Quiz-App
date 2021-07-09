@@ -5,15 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= currUser.name %>
-    </title>
+    <title>Create Quiz</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/createQuiz.css">
+    <link rel="shortcut icon" href="images/fav-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <link rel="shortcut icon" href="images/fav-icon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -27,8 +25,9 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/dashboard">DashBoard</a>
+                        <a class="nav-link active" aria-current="page" href="/profile">My Account</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/leaderboard">LeaderBoard</a>
                     </li>
@@ -44,44 +43,31 @@
         </div>
     </nav>
 
-
-
-
-    <div class="profile-details" style="margin: 20px">
-
-        <div class="card mb-3" style="max-width: 1040px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="images/img1.png" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="/profile">
-                                <%= currUser.username %>
-                            </a>
-                        </h5>
-                        <p class="card-text">
-                            <i class="fas fa-user-tie"></i>
-                            <%= currUser.name %>
-                                <br>
-                                <i class="fas fa-envelope"></i>
-                                <%= currUser.email %>
-                                    <br>
-
-                        </p>
-                        <p class="card-text">This is a wider card with supporting text below as a natural
-                            lead-in to
-                            additional
-                            content. This content is a little bit longer.</p>
-                        <p class="card-text"><i class="fas fa-cog"></i>
-                            <span><a href="/settings">Upgrade Profile</a></span>
-                        </p>
+    <form action="">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-lg" placeholder="Quiz Title">
                     </div>
-                </div>
+                    <div class="input-group input-group-sm mb-3">
+
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" placeholder="Quiz Description">
+                    </div>
+                </h5>
+                <p class="card-text">
+                    <button type="button" class="btn btn-primary" id="add-Question">
+                        Add Question
+                    </button>
+                </p>
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
             </div>
         </div>
-    </div>
+    </form>
+
+    <script src="js/createQuiz.js"></script>
 </body>
 
 </html>

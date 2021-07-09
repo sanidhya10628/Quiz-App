@@ -265,6 +265,34 @@ router.post('/settings', isLogin, async (req, res) => {
 
 
 
+
+// create Quiz
+router.get('/createquiz', (req, res) => {
+
+    res.render('createQuiz');
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
 
@@ -282,6 +310,16 @@ function shuffle(array) {
 
     return array;
 }
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
 
