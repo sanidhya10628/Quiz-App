@@ -32,7 +32,7 @@
                         <a class="nav-link active" aria-current="page" href="/leaderboard">LeaderBoard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/createquiz">Create Quiz</a>
+                        <a class="nav-link active" aria-current="page" href="/dashboard">DashBoard</a>
                     </li>
                 </ul>
                 <form class="d-flex" method="POST" action="/logout">
@@ -43,18 +43,18 @@
         </div>
     </nav>
 
-    <form action="">
+    <form action="/createquiz" method="POST">
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">
                     <div class="input-group input-group-lg">
                         <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg" placeholder="Quiz Title">
+                            aria-describedby="inputGroup-sizing-lg" placeholder="Quiz Title" name="quizTitle">
                     </div>
                     <div class="input-group input-group-sm mb-3">
 
                         <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm" placeholder="Quiz Description">
+                            aria-describedby="inputGroup-sizing-sm" placeholder="Quiz Description" name="quizDesc">
                     </div>
                 </h5>
                 <p class="card-text">
@@ -62,8 +62,18 @@
                         Add Question
                     </button>
                 </p>
+                <hr>
+                <p class="card-text">
+                <div class="questions" id="questions">
+
+                </div>
+
+                </p>
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
             </div>
+            <button type="submit" class="btn btn-warning" id="btn-submit">
+                Create Quiz
+            </button>
         </div>
     </form>
 

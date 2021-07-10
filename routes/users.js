@@ -9,7 +9,7 @@ const { render } = require('ejs');
 const fetch = require('node-fetch')
 const fs = require('fs');
 const LastLoginDetail = require('../models/LoginDetails');
-
+const CreateQuiz = require('../models/CreateQuiz')
 
 // middleware to access some pages to only logged in users
 const isLogin = (req, res, next) => {
@@ -270,6 +270,29 @@ router.post('/settings', isLogin, async (req, res) => {
 router.get('/createquiz', (req, res) => {
 
     res.render('createQuiz');
+})
+
+
+
+router.post('/createquiz', async (req, res) => {
+
+    const { quizTitle, quizDesc, question, option1, option2, option3, option4, correct_answer } = req.body;
+    // console.log(req.body)
+    // console.log(quizTitle, quizDesc, question, option1, option2, option3, option4, correct_answer);
+
+    for (let i = 0; i < question.length; i++) {
+        const newquiz = await new CreateQuiz({
+            question: question[i],
+            option1: option1[i],
+            option2: option2[i],
+            option3: option3[i],
+            option4: option4[i],
+            correct_answer: correct_answer[i]
+        })
+        await newquiz.save();
+    }
+
+    res.redirect('/dashboard')
 })
 
 
